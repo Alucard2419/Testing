@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Select  from './ui/Select'
+
 import AsyncSelect from 'react-select/async'
 
 const colourOptions = [
