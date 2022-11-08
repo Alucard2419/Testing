@@ -53,19 +53,19 @@ const connect = (URI) => {
     });
 
     initModels(sequelize);
-    // try {
-    //     sequelize.sync().then();
-    // } catch (err) {
-    //     Logger('source/genericDatabase').error(err);
-    // }
-    (async () => {
-        try {
-            await sequelize.sync();
-            } catch (err)
-            {
-            Logger('source/genericDatabase').error(err);
-            }
-    })();
+    try {
+        sequelize.sync().then();
+    } catch (err) {
+        Logger('source/genericDatabase').error(err);
+    }
+    // (async () => {
+    //     try {
+    //         await sequelize.sync();
+    //         } catch (err)
+    //         {
+    //         Logger('source/genericDatabase').error(err);
+    //         }
+    // })();
 
     return {sequelize};
 };
