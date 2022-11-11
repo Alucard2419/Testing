@@ -9,8 +9,8 @@ import authDatabase from "../../sources/authDatabase";
 import tiendaDatabase from "../../sources/tiendaDatabase";
 import genericDatabase from "../../sources/genericDatabase";
 import {Logger} from "../utils/logger";
-import {DASHBOARD, PageTest} from "../components.bundler";
-
+import {componentLoader, Components} from "../components.bundler";
+import theme from "../theme";
 
 function addDatabase(){
     database_labels.filter(
@@ -72,24 +72,28 @@ function apply_conf() {
         },
         assets: {
             styles: ['/index.css','/styles.css',],
-            scripts: process.env.NODE_ENV === 'production' ? ['/gtm.js'] : [],
         },
-
+        componentLoader,
         version: {
             admin: true,
             app:'2.0.0',
         },
         dashboard: {
-            component: DASHBOARD,
+          component: Components.Dashboard,
         },
         resources: [],
         branding: {
+            theme,
             companyName: 'Sibucán',
             logo: 'https://sibucan-admin-panel.herokuapp.com/assets/sibucan_logo.png'
         },
         pages: {
             'Custom Page': {
-                component: PageTest,
+                component: Components.PageTest,
+                icon: 'Purchase'
+            },
+            'Product Test': {
+                component: Components.ProductTest,
                 icon: 'Purchase'
             }
         }
@@ -98,6 +102,7 @@ function apply_conf() {
         if (value.resources) conf.resources.push(...value.resources);
     });
     const adminJS = new AdminJS(conf);
+
     return { adminJS };
 }
 

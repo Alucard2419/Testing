@@ -1,11 +1,11 @@
-import React, {useState, useEffect, useContext, FC} from 'react'
+import React, {useState, useEffect, useContext, FC, NamedExoticComponent} from 'react'
 import { CollapseContextProvider } from './context/collapseContext'
 import classNames from 'classnames'
-import { motion } from 'framer-motion'
+import { motion} from 'framer-motion'
 import MenuContext from './context/menuContext'
 import { HiChevronDown } from 'react-icons/hi'
 
-const MenuCollapse: React.FC =(props: any) => {
+const MenuCollapse = (props)=> {
 
     const {
         children,
@@ -84,6 +84,11 @@ const MenuCollapse: React.FC =(props: any) => {
             </CollapseContextProvider>
         </div>
     )
+};
+
+MenuCollapse.defaultProps = {
+    expanded: false,
+    label: null
 }
 
 

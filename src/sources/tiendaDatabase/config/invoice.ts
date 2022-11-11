@@ -1,4 +1,4 @@
-import {SELECTOR} from "../../../admin/components.bundler";
+import {Components} from "../../../admin/components.bundler";
 import {Logger} from "../../../admin/utils/logger";
 import {genericGetList, genericInsertBulk} from "../../../admin/controllers/genericController";
 
@@ -11,9 +11,9 @@ export function getOptions (getPoolInstance){
         properties: {
         products: {
             components: {
-                show: SELECTOR,
-                    new: SELECTOR,
-                    edit: SELECTOR,
+                show: Components.Selector,
+                    new: Components.Selector,
+                    edit: Components.Selector,
             },
 
             props: { name: MODELNAME, getAction: "getProducts" },

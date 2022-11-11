@@ -20,6 +20,7 @@ export const StyledNavigation = styled(Box)`
 
 const Navigation: React.FC<NavigationProps> = (props) => {
     const { label, elements } = props
+
     return (
         <StyledNavigation px="xl" py="lg">
             <div>

@@ -1,11 +1,26 @@
 import React from 'react';
+import {useSelector} from "react-redux";
+import {CurrentAdmin, Paths, ReduxState, VersionProps} from "adminjs";
+
+
+type Props = {
+    toggleSidebar:() => void
+};
 
 
 
 
 
 
-const Nav_Bar = () => {
+const Nav_Bar: React.FC<Props> = (props) => {
+    const { toggleSidebar } = props;
+    const [sessin, paths, versions] = useSelector(
+        (state: ReduxState): [CurrentAdmin | null, Paths, VersionProps] => [
+            state.session,
+            state.paths,
+            state.versions,
+        ],
+    );
 
     return(
         <>
@@ -13,7 +28,7 @@ const Nav_Bar = () => {
                 <div className="header-wrapper h-16">
                     <div className="header-action header-action-start">
                         <div className="header-action-item header-action-item-hoverable">
-                            <div className="text-2xl">
+                            <div className="text-2xl" onClick={toggleSidebar}>
                                 <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="1em"
                                      width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -36,7 +51,7 @@ const Nav_Bar = () => {
                                     className="avatar avatar-circle"
                                     style={{width: '24px', height: '24px', minWidth: '24px', lineHeight: '24px', fontSize: '12px'}}
                                 ><img
-                                    className="avatar-img avatar-circle" src="#" alt="avatar"
+                                    className="avatar-img avatar-circle" src="/img/countries/sp.png" alt="avatar"
                                     loading="lazy"/></span></div>
                             </div>
                         </div>
@@ -68,9 +83,9 @@ const Nav_Bar = () => {
                                 <div className="dropdown-toggle" id="dropdown-toggle-25-ADpaSv2ku7">
                                     <div className="header-action-item flex items-center gap-2"><span
                                         className="avatar avatar-circle"
-                                        // style="width: 32px; height: 32px; min-width: 32px; line-height: 32px; font-size: 12px;"
+                                        style={{width: "32px", height: "32px", minWidth: "32px", lineHeight: "32px", fontSize:"12px"}}
                                     ><img
-                                        className="avatar-img avatar-circle" src="#"
+                                        className="avatar-img avatar-circle" src="/img/avatars/thumb-2.jpg"
                                         loading="lazy" alt='avatar'/></span>
                                         <div className="hidden md:block">
                                             <div className="text-xs capitalize">admin</div>
@@ -79,6 +94,7 @@ const Nav_Bar = () => {
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

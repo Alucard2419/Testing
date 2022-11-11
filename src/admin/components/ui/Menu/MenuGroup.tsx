@@ -17,7 +17,6 @@ const MenuGroup = props => {
     )
 
 
-
     return (
         <div className={menuGroupClass}>
             {
@@ -37,6 +36,9 @@ const MenuGroup = props => {
             </GroupContextProvider>
         </div>
     )
+}
+MenuGroup.defaultProps = {
+    label: null
 }
 
 

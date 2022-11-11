@@ -2,7 +2,7 @@
 import {Logger} from "../../../admin/utils/logger";
 
 import {genericGetList, genericInsertBulk} from "../../../admin/controllers/genericController"
-import {SELECTOR} from "../../../admin/components.bundler";
+import {Components} from "../../../admin/components.bundler";
 
 const MODELNAME = "api_membership";
 /*
@@ -24,18 +24,18 @@ export function getOptions (getPoolInstance) {
       details: {
         //no back
         components: {
-          show: SELECTOR,
-          new: SELECTOR,
-          edit: SELECTOR,
+          show: Components.Selector,
+          new: Components.Selector,
+          edit: Components.Selector,
         },
 
         props: { name: MODELNAME, getAction: "getDetails" },
       },
       permissions: {
         components: {
-          show: SELECTOR,
-          new: SELECTOR,
-          edit: SELECTOR,
+          show: Components.Selector,
+          new: Components.Selector,
+          edit: Components.Selector,
         },
 
         props: { name: MODELNAME, getAction: "getPermissions" },

@@ -1,13 +1,29 @@
-import React, {Ref} from 'react';
+import React, {createRef, forwardRef} from 'react';
 import classNames from "classnames";
 import {MenuContextProvider} from "./context/menuContext";
 import {useConfig} from "../ConfigProvider";
 
+type WithStatics<
+    C extends React.ComponentType<any>,
+    StaticCmps extends {
+        [attachedComponents: string]: React.ComponentType<any>;
+    } = {}
+    > = C & StaticCmps;
 
+type GridProps = {};
+type CellProps = {};
 
+const Cell: React.FunctionComponent<CellProps> = props => <div {...props}/>;
 
+const Grid: WithStatics<
+    React.FunctionComponent<GridProps>,
+    { Cell: typeof Cell }
+    > = props => <div {...props} />;
 
-const Menu = React.forwardRef( (props: any, ref: any ) => {
+Grid.defaultProps = { color: "red" };
+Grid.Cell = Cell;
+
+const Menu = React.forwardRef<React.ReactElement<any>>( (props:any , ref) => {
 
     const {
         children,
@@ -39,7 +55,7 @@ const Menu = React.forwardRef( (props: any, ref: any ) => {
     );
 
     return (
-        <nav ref={ref} className={menuClass} {...rest}>
+        <nav ref={ref}  className={menuClass} {...rest}>
             <MenuContextProvider value={{
                 onSelect,
                 menuItemHeight,
@@ -55,3 +71,5 @@ const Menu = React.forwardRef( (props: any, ref: any ) => {
 });
 
 export default Menu;
+
+

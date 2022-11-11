@@ -6,6 +6,8 @@ import {Box, cssClass, themeGet} from "@adminjs/design-system";
 import SidebarBranding from "./sidebar-branding";
 import SidebarResourceSection from "./sidebar-resource-section";
 import SidebarPages from "./side_bar-pages";
+import PageTest from "../../../views/pages/page.test";
+import SidebarFooter from "adminjs/src/frontend/components/app/sidebar/sidebar-footer";
 
 
 type Props = {
@@ -13,9 +15,7 @@ type Props = {
 };
 
 const StyledSidebar = styled(Box)`
-  --tw-bg-opacity: 1;
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128/var(--tw-text-opacity));
+
   font-size: .875rem;
   line-height: 1.5;
   transition: left 0.3s;
@@ -37,7 +37,7 @@ StyledSidebar.defaultProps = {
     display: 'flex',
     flexDirection: 'column',
     zIndex: 50,
-    bg: 'side-nav-transparent'
+    bg: 'white'
 }
 
 
@@ -56,15 +56,13 @@ const SideBar: React.FC<Props> = (props)=> {
 
     return(
         <>
-           <StyledSidebar className={isVisible ? 'visible' : 'hidden'} data-css="sidebar">
-                <SidebarBranding branding={branding}/>
-               <Box flexGrow={1} className={cssClass('Resources')}>
-
-                   <SidebarResourceSection resources={resources}/>
-
-               </Box>
-              <SidebarPages pages={pages}/>
-           </StyledSidebar>
+            <StyledSidebar className={isVisible ? 'visible' : 'hidden'} data-css="sidebar">
+                <SidebarBranding branding={branding} />
+                <Box flexGrow={1} className={cssClass('Resources')} data-css="sidebar-resources">
+                    <SidebarResourceSection resources={resources} />
+                </Box>
+                <SidebarPages pages={pages} />
+            </StyledSidebar>
         </>
     )
 
